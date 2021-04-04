@@ -13,27 +13,28 @@ Pre Requirements:
 
 ![](img/1-1.png)
 
-2.  Klik Download Go For Windows(Bagi yang OS Windows)
+2. Klik Download Go For Windows(Bagi yang OS Windows)
 ![](img/1-2.png)
-a.  Sesuaikan lokasi file dengan yang digambar, Lalu plih **Next** dan **Install**.
+   - Sesuaikan lokasi file dengan yang digambar, Lalu plih **Next** dan **Install**.
 ![](img/1-3.png)
-b.  Tampilan Go telah selesai diinstall.  
-c.  Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
+   - Tampilan Go telah selesai diinstall.
+   - Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
 
-3.  Instalasi Linux  
-a.  sudo wget [https://golang.org/dl/go1.16.2.linux-amd64.tar.gz](https://www.google.com/url?q=https://golang.org/dl/go1.16.2.linux-amd64.tar.gz&sa=D&source=editors&ust=1617499705409000&usg=AOvVaw0U-IXHQZep3CWl_NcemuLF)  
-b.  `rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz`  
-c.  Buka file ~/.profile, lalu tambahkan baris berikut ke akhir file :  
+
+3.  Instalasi Linux
+    -  sudo wget [https://golang.org/dl/go1.16.2.linux-amd64.tar.gz](https://www.google.com/url?q=https://golang.org/dl/go1.16.2.linux-amd64.tar.gz&sa=D&source=editors&ust=1617499705409000&usg=AOvVaw0U-IXHQZep3CWl_NcemuLF)  
+    -  `rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz`  
+    -  Buka file ~/.profile, lalu tambahkan baris berikut ke akhir file :  
 ![](img/1-4.png)
-d.  Simpan lalu restart terminal anda.  
-e.  Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
+    -  Simpan lalu restart terminal anda.  
+    -  Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
 
 4.  Instalasi Mac
 ![](img/1-5.png)
-a. Pilih tab **Mac**  sesuai gambar.  
-b. Download file dengan **Download Go For Mac**.  
-c. Jangan lupa menambahkan path environment Go yaitu /usr/local/go/bin ke PATH environment variable  
-d. Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
+    - Pilih tab **Mac**  sesuai gambar.  
+    - Download file dengan **Download Go For Mac**.  
+    - Jangan lupa menambahkan path environment Go yaitu /usr/local/go/bin ke PATH environment variable  
+    - Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
 
 ## Integrasi Visual Studio Code dengan Go
 ![](img/1-6.png)
@@ -54,7 +55,7 @@ d. Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
 
 ![](img/1-10.png)
 
-4.  Buatlah file **main.go**.
+4.  Buatlah file **main.go**.  
 
 Struktur file go biasanya wajib memiliki **package {package_name}** dimana nama package itu menandakan file tersebut berada di folder yang mana. Ketika ingin menggunakan library yang tersedia pada Go, penulisannya seperti berikut `Import “library_name”`, jika hanya satu library. Jika lebih dari satu library,
 ````GO
@@ -64,7 +65,6 @@ Struktur file go biasanya wajib memiliki **package {package_name}** dimana nama 
     )
 ````
 Tapi tenang saja, karena ketika anda menggunakan plugin VSCode Go, maka plugin tersebut akan mengatur penulisan file Go anda.
-
 -   Agar suatu file go berjalan wajib memiliki
 **package main**
 Dengan nama fungsi
