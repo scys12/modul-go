@@ -16,5 +16,5 @@ func (pd *ProductDelivery) BuyProduct(w http.ResponseWriter, r *http.Request) {
 		payload.ResponseError(w, http.StatusInternalServerError, err)
 		return
 	}
-	payload.ResponseOK(w, "Product deleted")
+	payload.ResponseOK(w, "Product bought")
 }

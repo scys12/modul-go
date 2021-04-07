@@ -10,7 +10,7 @@ import (
 )
 
 func (pd *ProductDelivery) InsertProduct(w http.ResponseWriter, r *http.Request) {
-	var productReq payload.InsertProductRequest
+	var productReq payload.ProductRequest
 	userID, _ := strconv.Atoi(r.Header.Get("X-Header-UserID"))
 
 	err := json.NewDecoder(r.Body).Decode(&productReq)

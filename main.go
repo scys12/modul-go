@@ -5,19 +5,16 @@ import (
 
 	"github.com/scys12/modul-go/internal/config"
 	"github.com/scys12/modul-go/internal/database"
-	custDelivery "github.com/scys12/modul-go/internal/delivery/customer"
 	prodDelivery "github.com/scys12/modul-go/internal/delivery/product"
-	selDelivery "github.com/scys12/modul-go/internal/delivery/seller"
-	custRepo "github.com/scys12/modul-go/internal/persistence/customer"
+	usrDelivery "github.com/scys12/modul-go/internal/delivery/user"
 	prodRepo "github.com/scys12/modul-go/internal/persistence/product"
-	selRepo "github.com/scys12/modul-go/internal/persistence/seller"
+	usrRepo "github.com/scys12/modul-go/internal/persistence/user"
 	"github.com/sirupsen/logrus"
 )
 
 type AppDelivery struct {
-	SellerDelivery   selDelivery.SellerDelivery
-	CustomerDelivery custDelivery.CustomerDelivery
-	ProductDelivery  prodDelivery.ProductDelivery
+	UserDelivery    usrDelivery.UserDelivery
+	ProductDelivery prodDelivery.ProductDelivery
 }
 
 func main() {
@@ -34,19 +31,16 @@ func main() {
 		logrus.Error(testPing)
 	}
 	defer db.Close()
-	customerRepo := custRepo.NewInstance(db)
-	customerDelivery := custDelivery.NewInstance(customerRepo)
 
-	sellerRepo := selRepo.NewInstance(db)
-	sellerDelivery := selDelivery.NewInstance(sellerRepo)
+	userRepo := usrRepo.NewInstance(db)
+	userDelivery := usrDelivery.NewInstance(userRepo)
 
 	productRepo := prodRepo.NewInstance(db)
 	productDelivery := prodDelivery.NewInstance(productRepo)
 
 	appDelivery := AppDelivery{
-		SellerDelivery:   sellerDelivery,
-		CustomerDelivery: customerDelivery,
-		ProductDelivery:  productDelivery,
+		UserDelivery:    userDelivery,
+		ProductDelivery: productDelivery,
 	}
 	routes := SetupRoutes(appDelivery)
 	logrus.Fatal(http.ListenAndServe(":8000", routes))
