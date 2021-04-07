@@ -24,12 +24,12 @@ func (sr *SellerRepo) InsertSeller(seller model.Seller) (err error) {
 
 func (sr *SellerRepo) GetSeller(username string) (seller model.Seller, err error) {
 	const query = "SELECT * FROM seller WHERE username=?"
-	err = sr.dbContext.QueryRow(query, username).Scan(&seller.ID, &seller.Email, &seller.Password, &seller.Username, &seller.UpdatedAt, &seller.CreatedAt)
+	err = sr.dbContext.QueryRow(query, username).Scan(&seller.ID, &seller.Username, &seller.Password, &seller.Email, &seller.CreatedAt, &seller.UpdatedAt)
 	return
 }
 
 func (sr *SellerRepo) GetCustomerByID(id int) (seller model.Seller, err error) {
 	const query = "SELECT * FROM seller WHERE id=?"
-	err = sr.dbContext.QueryRow(query, id).Scan(&seller.ID, &seller.Email, &seller.Password, &seller.Username, &seller.UpdatedAt, &seller.CreatedAt)
+	err = sr.dbContext.QueryRow(query, id).Scan(&seller.ID, &seller.Username, &seller.Password, &seller.Email, &seller.CreatedAt, &seller.UpdatedAt)
 	return
 }

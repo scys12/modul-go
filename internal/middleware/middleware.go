@@ -53,3 +53,19 @@ func IsRoleSeller(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
+func IsRoleCustomer(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		isSeller := false
+		role := r.Header.Get(headerRole)
+		if role == "customer" {
+			isSeller = true
+		}
+		if !isSeller {
+			err := errors.New("Forbidden")
+			payload.ResponseError(w, http.StatusForbidden, err)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
+}

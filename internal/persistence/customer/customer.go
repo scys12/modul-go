@@ -26,12 +26,12 @@ func (cr *CustomerRepo) InsertCustomer(customer model.Customer) (err error) {
 
 func (cr *CustomerRepo) GetCustomer(username string) (customer model.Customer, err error) {
 	const query = "SELECT * FROM customer WHERE username=?"
-	err = cr.dbContext.QueryRow(query, username).Scan(&customer.ID, &customer.Email, &customer.Password, &customer.Username, &customer.UpdatedAt, &customer.CreatedAt)
+	err = cr.dbContext.QueryRow(query, username).Scan(&customer.ID, &customer.Username, &customer.Password, &customer.Email, &customer.CreatedAt, &customer.UpdatedAt)
 	return
 }
 
 func (cr *CustomerRepo) GetCustomerByID(id int) (customer model.Customer, err error) {
 	const query = "SELECT * FROM customer WHERE id=?"
-	err = cr.dbContext.QueryRow(query, id).Scan(&customer.ID, &customer.Email, &customer.Password, &customer.Username, &customer.UpdatedAt, &customer.CreatedAt)
+	err = cr.dbContext.QueryRow(query, id).Scan(&customer.ID, &customer.Username, &customer.Password, &customer.Email, &customer.CreatedAt, &customer.UpdatedAt)
 	return
 }

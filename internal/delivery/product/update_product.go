@@ -10,7 +10,7 @@ import (
 )
 
 func (pd *ProductDelivery) UpdateProduct(w http.ResponseWriter, r *http.Request) {
-	var productReq payload.UpdateProductRequest
+	var productReq payload.ProductRequest
 	userID, _ := strconv.Atoi(r.Header.Get("X-Header-UserID"))
 	vars := mux.Vars(r)
 	productID, _ := strconv.Atoi(vars["id"])
