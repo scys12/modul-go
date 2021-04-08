@@ -121,7 +121,7 @@ Lalu akan ditampilkan hasil dari program anda. Dari gambar diatas, program kita 
 
 - Untuk membuat fungsi pada Go, anda dapat menggunakan syntax
 ````GO
-func nama_fungsi(data_type param_name, data_type param_name2,...) return_type {
+func nama_fungsi(param_name data_type, param_name2 data_type,...) return_type {
 ...
 }
 ````
@@ -189,7 +189,7 @@ Apa itu **Array**? **Array** adalah sebuah struktur data yang terdiri atas banya
 ````
 Kalian juga dapat membuat array dynamic dimana kalian tidak perlu menetapkan ukuran dari array tersebut. Salah satu cara mendeklarasikan array dynamic :
 ````GO
-Var variable_name [ ]data_type
+var variable_name [ ]data_type
 ````
 Dan kalian dapat menambahkan value dari array tersebut dengan fungsi **append()**.
 
@@ -325,7 +325,7 @@ Untuk menggunakan interface, dapat dilihat pada kodingan
 Dimana polanya adalah :
 
 ````GO
-Var var_name Interface_Name = struct_implemented{}
+var var_name Interface_Name = struct_implemented{}
 ````
 
 Kita dapat membuat struct dengan menggunakan pointer (&) atau tidak. Jika ada salah satu pointer receiver yang menggunakan struct, maka wajib menggunakan tanda (&) pada saat deklarasi variable. Jika tidak ada pointer receiver, hanya menggunakan receiver biasa, maka dapat memilih untk mendeklarasi dengan menggunakan pointer(&) atau tidak.
