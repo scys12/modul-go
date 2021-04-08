@@ -1,4 +1,4 @@
-# Modul Golang
+## Modul Golang
 
 Pre Requirements:
 
@@ -7,7 +7,28 @@ Pre Requirements:
 -   Menginstall Visual Studio Code
 
 # Modul Hari Pertama
-## Install Golang (approx +- 20 min)
+### Daftar Isi
+- [Modul Hari Pertama](#modul-hari-pertama)
+    - [Daftar Isi](#daftar-isi)
+  - [1. Install Golang (approx +- 20 min)](#1-install-golang-approx---20-min)
+  - [2. Integrasi Visual Studio Code dengan Go](#2-integrasi-visual-studio-code-dengan-go)
+  - [3. Syntax Dasar dan Cara Menjalankan Go](#3-syntax-dasar-dan-cara-menjalankan-go)
+  - [4. Syntax Dasar dan Pemahaman Go](#4-syntax-dasar-dan-pemahaman-go)
+    - [4.1 Fungsi](#41-fungsi)
+    - [4.2 Variable](#42-variable)
+    - [4.3 Flow Control](#43-flow-control)
+    - [4.4 Array](#44-array)
+    - [4.5 Struct](#45-struct)
+    - [4.6 Defer](#46-defer)
+    - [4.7 Method](#47-method)
+    - [4.8 Public/Private/Protected Identifier](#48-publicprivateprotected-identifier)
+    - [4.9 Pointer](#49-pointer)
+    - [5.0 Pointer Receiver.](#50-pointer-receiver)
+    - [5.1 Interfaces](#51-interfaces)
+    - [5.2 Empty Interface](#52-empty-interface)
+    - [5.3 Map](#53-map)
+    - [5.4 Errors](#54-errors)
+## 1. Install Golang (approx +- 20 min)
 
 1.  Buka [https://golang.org/doc/install](https://www.google.com/url?q=https://golang.org/doc/install&sa=D&source=editors&ust=1617499705407000&usg=AOvVaw3yR2qwJ_3zpWD8rUUq0fiK)
 
@@ -36,13 +57,13 @@ Pre Requirements:
     - Jangan lupa menambahkan path environment Go yaitu /usr/local/go/bin ke PATH environment variable  
     - Cek apakah go telah terinstall dengan menggunakan command `$ go version`.
 
-## Integrasi Visual Studio Code dengan Go
+## 2. Integrasi Visual Studio Code dengan Go
 ![](img/1-6.png)
 1.  Install plugin sesuai gambar diatas. Lalu restart VS Code kalian.
 ![](img/1-7.png)
 2.  Jika disuruh menginstall plugin pada Go, maka pilih opsi Install All.
 
-## Syntax Dasar dan Cara Menjalankan Go
+## 3. Syntax Dasar dan Cara Menjalankan Go
 
 ![](img/1-8.png)
 1.  Buat sebuah folder baru dan bukalah folder tersebut di **VSCode** kalian. Pada gambar diatas, nama folder adalah modul-go.
@@ -92,9 +113,9 @@ Lalu akan ditampilkan hasil dari program anda. Dari gambar diatas, program kita 
 
     Hello, 世界
 
-## Syntax Dasar dan Pemahaman Go
+## 4. Syntax Dasar dan Pemahaman Go
 
-###  Fungsi
+###  4.1 Fungsi
 
 ![](img/1-12.png)
 
@@ -120,7 +141,7 @@ Contoh lain:
 
 ![](img/1-15.png)
 
-###  Variable
+###  4.2 Variable
 
 ![](img/1-16.png)
 
@@ -144,7 +165,7 @@ Dapat dilihat, terdapat error yang muncul karena kita mendefinisikan suatu varia
 ````GO
 var_name := value
 ````
-### Flow Control
+### 4.3 Flow Control
 
 ![](img/1-18.png)
 
@@ -158,7 +179,7 @@ Sedangkan untuk penggunaan **while**, Go tidak menyediakan syntax tersebut namun
 
 Terdapat **if/else** yang merupakan percabangan atau condition blocks. **If** akan bergantung pada hasil yang ingin dibandingkan.
 
-### Array
+### 4.4 Array
 
 ![](img/1-21.png)
 
@@ -172,7 +193,7 @@ Var variable_name [ ]data_type
 ````
 Dan kalian dapat menambahkan value dari array tersebut dengan fungsi **append()**.
 
-### Struct
+### 4.5 Struct
 Struct adalah kumpulan definisi variabel (atau property) dan atau fungsi (atau method), yang dibungkus sebagai tipe data baru dengan nama tertentu. Property dalam struct, tipe datanya bisa bervariasi. Mirip seperti **map**, hanya saja key-nya sudah didefinisikan di awal, dan tipe data tiap itemnya bisa berbeda. Struct mirip dengan **Class** di **OOP**.
 
 ![](img/1-22.png)
@@ -213,7 +234,7 @@ Untuk mendeklarasikan struct `Library`, kalian dapat membuat seperti kode diatas
 
 Perbedaannya adalah pada gambar pertama, struct buku sudah kita assign ke variable book dan bookV2, sedangkan gambar kedua, kita mengisi `Book` tanpa mengassign ke variable.
 
-### Defer
+### 4.6 Defer
 
 Defer merupakan syntax untuk mengeksekusi statement pada saat fungsi melakukan pengembalian.
 
@@ -227,7 +248,7 @@ Kegunaan defer adalah untuk memastikan suatu statement benar benar dijalankan. D
 
 Output dari fungsi diatas.
 
-### Method
+### 4.7 Method
 ![](img/1-29.png)
 
 Apa itu method ? Method sama seperti function, namun yang membedakan method mempunyai receiver argument, dimana receiver argumen itu menandakan method tersebut dimiliki oleh struktur data yang mana.
@@ -241,14 +262,14 @@ Func (receiver_name receiver_type) function_name(param1,...,paramn
 ````
 Statement diatas adalah cara membuat method.
 
-### Public/Private/Protected Identifier
+### 4.8 Public/Private/Protected Identifier
 Mungkin kalian bertanya-tanya, gimana caranya membuat public/private/protected seperti yang ada di bahasa pemrograman OOP lainnya. Di Go,tidak ada terminologi yang menerangkan bagaimana membuat public/private/protected, melainkan dengan menggunakan huruf besar atau huruf kecil. Agar suatu variable/struct/fungsi/method dianggap sebagai public identifier, harus menggunakan huruf besar pada awalan nama. Sehingga kita bisa memanggil dari **package** yang berbeda. Sedangkan jika menggunakan huruf kecil pada awalan nama, maka akan dianggap protected dan private. Lebih lanjut suatu variable/struct/fungsi/method dianggap private ketika dia tidak dapat diakses dari **package diluar package dari file tersebut (didefinisikan dibaris paling atas).** Sedangkan protected dianggap ketika kita bisa mengakses dari package yang sama dengan package file. Jadi walaupun terdapat 2 file berbeda namun masih satu package, maka kita bisa mengakses variable/struct/fungsi/method karena dianggap protected.
 
 ![](img/1-30.png)
 
 Struct `User` berada di package `user`, dan kita ingin memanggil melalui package **main**. Dapat dilihat bahwa, fungsi yang muncul hanya fungsi berawalan huruf besar, sedangkan fungsi yang berawalan huruf kecil tidak dapat diakses dari luar package.
 
-### Pointer
+### 4.9 Pointer
 
 Pointer menyimpan alamat-alamat pada Go. Pointer sangat penting ketika menggunakan Go.
 
@@ -271,7 +292,7 @@ Jika kita awalnya mendeklarasikan variable tanpa menggunakan pointer yaitu varia
 ![](img/1-36.png)
 
 Ketika kita ingin mempassing suatu variable berpointer ke dalam fungsi yang tidak menggunakan pointer, maka kita dapat menggunakan tanda “*” di variable yang ingin dipassing
-### Pointer Receiver.
+### 5.0 Pointer Receiver.
 ![](img/1-37.png)
 
 Pada kode diatas kita membuat receiver menggunakan pointer, yaitu `(u *User)`. Ada 2 alasan kenapa kita harus menggunakan pointer receiver.
@@ -281,7 +302,7 @@ Yang pertama adalah agar method dapat mengubah value dari field2 di receivernya
 Yang kedua adalah menghindari menyalin nilai pada setiap panggilan metode. Ini bisa lebih efisien jika receiver adalah sebuah struct besar
 >**Rule Of Thumb:** Ketika kalian tidak yakin terhadap apa yang akan receiver kalian lakukan, gunakan pointer.
 
-### Interfaces
+### 5.1 Interfaces
 Interfaces adalah kumpulan dari method-method yang akan menjadi. Suatu struct dikatakan mengimplementasi suatu interface jika dia mengimplementasi semua method dari interface tersebut
 
 ![](img/1-38.png)
@@ -309,7 +330,7 @@ Var var_name Interface_Name = struct_implemented{}
 
 Kita dapat membuat struct dengan menggunakan pointer (&) atau tidak. Jika ada salah satu pointer receiver yang menggunakan struct, maka wajib menggunakan tanda (&) pada saat deklarasi variable. Jika tidak ada pointer receiver, hanya menggunakan receiver biasa, maka dapat memilih untk mendeklarasi dengan menggunakan pointer(&) atau tidak.
 
-### Empty Interface
+### 5.2 Empty Interface
 Adalah tipe interface yang tidak memiliki method sama sekali. Kita dapat menyimpan nilai apapun dalam empty interface. Dapat dibilang bahwa ini mirip dengan Object yang ada di java atau **dynamic** yang ada di dart.
 
 ![](img/1-40.png)
@@ -318,7 +339,7 @@ Dapat dilihat bahwa value mempunyai tipe interface{}/empty interface. Sehingga k
 
 ![](img/1-41.png)
 
-### Map
+### 5.3 Map
 Map adalah suatu struktur data yang memetakan key ke value
 
 ![](img/1-42.png)
@@ -331,7 +352,7 @@ Dimana keynya merupakan string dan valuenya merupakan integer.
 
 Kita bahkan bisa menginisialisasi map dengan value/key sebuah struct
 
-### Errors
+### 5.4 Errors
 
 Salah satu kelebihan go adalah kita tidak perlu menghafal tipe error seperti yang ada di Java, contohnya adalah IOException, RuntimeException, dll. Sebab setiap fungsi di go dapat mereturn error dimana kita bisa mengecek error tersebut
 
