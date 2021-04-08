@@ -149,3 +149,130 @@ Ketika ingin menggunakan **for** dalam Go, anda dapat mendefinisikannya seperti 
 ![](img/1-19.png)
 
 Sedangkan untuk penggunaan **while**, Go tidak menyediakan syntax tersebut namun digantikan dengan **for** seperti gambar diatas.
+
+![](img/1-20.png)
+
+Terdapat **if/else** yang merupakan percabangan atau condition blocks. **If** akan bergantung pada hasil yang ingin dibandingkan.
+
+### Array
+
+![](img/1-21.png)
+
+Apa itu **Array**? **Array** adalah sebuah struktur data yang terdiri atas banyak variabel dengan tipe data sama, dimana masing-masing elemen variabel mempunyai nilai indeks. Kalian dapat membuat fixed-length array dengan menetapkan berapa ukuran dari array, dengan syntax
+````GO
+[size_n]data_type{val1, val2, val3,..., valn}
+````
+Kalian juga dapat membuat array dynamic dimana kalian tidak perlu menetapkan ukuran dari array tersebut. Salah satu cara mendeklarasikan array dynamic :
+````GO
+Var variable_name [ ]data_type
+````
+Dan kalian dapat menambahkan value dari array tersebut dengan fungsi **append()**.
+
+### Struct
+Struct adalah kumpulan definisi variabel (atau property) dan atau fungsi (atau method), yang dibungkus sebagai tipe data baru dengan nama tertentu. Property dalam struct, tipe datanya bisa bervariasi. Mirip seperti **map**, hanya saja key-nya sudah didefinisikan di awal, dan tipe data tiap itemnya bisa berbeda. Struct mirip dengan **Class** di **OOP**.
+
+![](img/1-22.png)
+
+Dari kodingan diatas, kita mempunyai **Struct** `Book`  yang mempunyai field `ISBN`, `Genre`, `Name` dengan tipe String. Lalu kita mempunyai **Struct** `Library` dengan field `Name` (string), `Size`(int), Lalu kita mempunyai array of struct dari **Struct** `Book`.
+
+![](img/1-23.png)
+
+Kalian dapat mendeklarasikan struct seperti kodingan diatas.
+
+`Book := Book{}` dapat dikatakan bahwa kita membuat suatu struk baru. Jika dikonversikan ke OOP Class, maka :
+
+    Book book = Book()
+
+Dimana kita tidak menaruh parameter pada konstruktornya
+
+![](img/1-24.png)
+
+Pada deklarasi struk diatas, kita mendeklarasi sekaligus mengisi value dari field field pada struct `Book`. Jika terdapat suatu field yang tidak diisi, maka default valuenya bisa berupa **nil**, **0**. **Nil** pada **Go** berarti  suatu variable belum memiliki value sama sekali. **Nil** mirip dengan **Null** pada bahasa pemrograman lainnya. Jika kodingan diatas dikonversikan ke OOP Class, maka :
+
+    Book bookV2 = Book(“Horror”, “124”, “Foo”)
+
+Dimana pada class Booknya menjadi :
+````Java
+class Book {
+	Book(string isbn, string genre, string name){
+		This.isbn = isbn
+		This.genre = genre
+		This.name = name
+	}
+}
+````
+![](img/1-25.png)
+
+Untuk mendeklarasikan struct `Library`, kalian dapat membuat seperti kode diatas, atau
+
+![](img/1-26.png)
+
+Perbedaannya adalah pada gambar pertama, struct buku sudah kita assign ke variable book dan bookV2, sedangkan gambar kedua, kita mengisi `Book` tanpa mengassign ke variable.
+
+### Defer
+
+Defer merupakan syntax untuk mengeksekusi statement pada saat fungsi melakukan pengembalian.
+
+![](img/1-27.png)
+
+Kita mempunyai fungsi bernama DeferFunc() dengan return value berupa **boolean**.
+
+Kegunaan defer adalah untuk memastikan suatu statement benar benar dijalankan. Dapat dilihat bahwa disana kita mengecek genre bukunya. Bagaimana kita bisa memastikan bahwa sebelum fungsi melakukan return, dia akan mengeksekusi suatu statement? Kita dapat memastikan dengan menggunakan defer.
+
+![](img/1-28.png)
+
+Output dari fungsi diatas.
+
+### Method
+![](img/1-29.png)
+
+Apa itu method ? Method sama seperti function, namun yang membedakan method mempunyai receiver argument, dimana receiver argumen itu menandakan method tersebut dimiliki oleh struktur data yang mana.
+
+Dari gambar diatas kita mempunyai struct `User`. Lalu kita mempunyai 3 Method dasri struct User yaitu **GetUserNameAndId()**, **generatePassword()**, **GetPassword()**.
+
+Kenapa 3 fungsi ini dibilang method, karena mereka mempunyai receiver, yaitu (u user).
+
+````GO
+Func (receiver_name receiver_type) function_name(param1,...,paramn
+````
+Statement diatas adalah cara membuat method.
+
+### Public/Private/Protected Identifier
+Mungkin kalian bertanya-tanya, gimana caranya membuat public/private/protected seperti yang ada di bahasa pemrograman OOP lainnya. Di Go,tidak ada terminologi yang menerangkan bagaimana membuat public/private/protected, melainkan dengan menggunakan huruf besar atau huruf kecil. Agar suatu variable/struct/fungsi/method dianggap sebagai public identifier, harus menggunakan huruf besar pada awalan nama. Sehingga kita bisa memanggil dari **package** yang berbeda. Sedangkan jika menggunakan huruf kecil pada awalan nama, maka akan dianggap protected dan private. Lebih lanjut suatu variable/struct/fungsi/method dianggap private ketika dia tidak dapat diakses dari **package diluar package dari file tersebut (didefinisikan dibaris paling atas).** Sedangkan protected dianggap ketika kita bisa mengakses dari package yang sama dengan package file. Jadi walaupun terdapat 2 file berbeda namun masih satu package, maka kita bisa mengakses variable/struct/fungsi/method karena dianggap protected.
+
+![](img/1-30.png)
+
+Struct `User` berada di package `user`, dan kita ingin memanggil melalui package **main**. Dapat dilihat bahwa, fungsi yang muncul hanya fungsi berawalan huruf besar, sedangkan fungsi yang berawalan huruf kecil tidak dapat diakses dari luar package.
+
+### Pointer
+
+Pointer menyimpan alamat-alamat pada Go. Pointer sangat penting ketika menggunakan Go.
+
+![](img/1-31.png)
+
+![](img/1-32.png)
+
+Kita dapat mendeklarasikan variable yang menggunakan pointer seperti kodingan diatas. Kita dapat menggunakan new(), atau menggunakan tanda “&” pada waktu deklarasi.
+
+![](img/1-33.png)
+
+![](img/1-34.png)
+
+Pointer juga dapat digunakan sebagai parameter, dimana variable yang kita passing juga harus dalam bentuk pointer. Jika dilihat bahwa `user` sudah dalam bentuk pointer (Gambar Sebelumnya)  sehingga jika kita passing ke fungsi **ChangeUserData()** maka dapat berjalan. Dapat dilihat bahwa fungsi **ChangeUserData**, kita hanya perlu mengganti isi dari struct kita tanpa melakukan return.
+
+Jika kita awalnya mendeklarasikan variable tanpa menggunakan pointer yaitu variable `userV3`, ketika kita ingin passing ke fungsi **ChangeUserData()** maka dapat menggunakan tanda “&” diparameter fungsi tersebut.
+
+![](img/1-35.png)
+
+![](img/1-36.png)
+
+Ketika kita ingin mempassing suatu variable berpointer ke dalam fungsi yang tidak menggunakan pointer, maka kita dapat menggunakan tanda “*” di variable yang ingin dipassing
+### Pointer Receiver.
+![](img/1-37.png)
+
+Pada kode diatas kita membuat receiver menggunakan pointer, yaitu `(u *User)`. Ada 2 alasan kenapa kita harus menggunakan pointer receiver.
+
+Yang pertama adalah agar method dapat mengubah value dari field2 di receivernya
+
+Yang kedua adalah menghindari menyalin nilai pada setiap panggilan metode. Ini bisa lebih efisien jika receiver adalah sebuah struct besar
+>**Rule Of Thumb:** Ketika kalian tidak yakin terhadap apa yang akan receiver kalian lakukan, gunakan pointer.
