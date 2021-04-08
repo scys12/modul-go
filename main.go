@@ -10,6 +10,7 @@ import (
 	"os"
 )
 
+// Struct untuk membantu parsing
 type Response struct {
 	Name           string  `json:"name"`
 	BaseExperience int     `json:"base_experience"`
@@ -28,14 +29,18 @@ type PokemonStat struct {
 
 func main() {
 
+	// Inisialisasi reader
 	reader := bufio.NewReader(os.Stdin)
+
 	fmt.Println("Halo Keluarga RPL!")
 	fmt.Println("-------------------")
 	fmt.Println("Pilih pokemon:")
 	fmt.Println("1. Bulbasaur")
 	fmt.Println("2. Pikachu")
+	fmt.Println("3. Ditto")
 	fmt.Printf("\nMasukkan pilihan: ")
 
+	// Membaca input
 	char, _, err := reader.ReadRune()
 
 	if err != nil {
@@ -43,15 +48,22 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Base URL
 	url := "http://pokeapi.co/api/v2/pokemon/"
 
+	// Ganti URL berdasar input
 	switch char {
 	case '1':
 		url += "bulbasaur"
 	case '2':
 		url += "pikachu"
+	case '3':
+		url += "ditto"
+	default:
+		url += "pikachu"
 	}
 
+	// Fetch api
 	response, err := http.Get(url)
 
 	if err != nil {
@@ -59,11 +71,13 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Ambil response
 	responseData, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Parsing response
 	var responseObject Response
 	json.Unmarshal(responseData, &responseObject)
 
