@@ -57,16 +57,18 @@ Pre Requirements:
 
 4.  Buatlah file **main.go**.  
 
-Struktur file go biasanya wajib memiliki **package {package_name}** dimana nama package itu menandakan file tersebut berada di folder yang mana. Ketika ingin menggunakan library yang tersedia pada Go, penulisannya seperti berikut `Import “library_name”`, jika hanya satu library. Jika lebih dari satu library,
+Struktur file go biasanya wajib memiliki **package {package_name}** dimana nama package itu menandakan file tersebut berada di folder yang mana. Ketika ingin menggunakan library yang tersedia pada Go, penulisannya seperti berikut `Import "library_name"`, jika hanya satu library. Jika lebih dari satu library,
 ````GO
     Import (
-    “Library_name1”
-    “library_name2”
+    "Library_name1"
+    "library_name2"
     )
 ````
 Tapi tenang saja, karena ketika anda menggunakan plugin VSCode Go, maka plugin tersebut akan mengatur penulisan file Go anda.
 -   Agar suatu file go berjalan wajib memiliki
 **package main**
+
+
 Dengan nama fungsi
 ````GO
 func main (){
@@ -77,7 +79,9 @@ func main (){
 -   Jika suatu file memiliki func main(), maka Go akan mengeksekusi programnya melalui fungsi tersebut.![](img/1-11.png)
 
 5.  Untuk mengeksekusi suatu projek Go, anda dapat melakukannya dengan perintah
-``go build``  
+
+``go build``
+
 ```./{root_name_folder}```
 
 Jika melihat dari gambar diatas, hasil dari perintah build akan menampilkan file baru yang namanya sesuai dengan base root folder, dimana dari gambar tersebut adalah modul-go. Jika anda menggunakan windows, dapat menjalankan program dengan perintah :
@@ -276,3 +280,77 @@ Yang pertama adalah agar method dapat mengubah value dari field2 di receivernya
 
 Yang kedua adalah menghindari menyalin nilai pada setiap panggilan metode. Ini bisa lebih efisien jika receiver adalah sebuah struct besar
 >**Rule Of Thumb:** Ketika kalian tidak yakin terhadap apa yang akan receiver kalian lakukan, gunakan pointer.
+
+### Interfaces
+Interfaces adalah kumpulan dari method-method yang akan menjadi. Suatu struct dikatakan mengimplementasi suatu interface jika dia mengimplementasi semua method dari interface tersebut
+
+![](img/1-38.png)
+
+Dapat dilihat bahwa kita membuat interface StudentBehavior yang methodnya berhubungan dengan yang biasanya murid-murid lakukan. Lalu kita membuat struct student yang fieldnya berupa ID dan Name. **Untuk mengimplementasikan interface pada struct terjadi secara implisit,** dimana kita tidak perlu menuliskan **implements** seperti yang ada di Java misalnya, namun wajib **menuliskan semua method dari interface tersebut sama persis** ke method dari struct.
+
+Contohnya adalah terdapat 3 fungsi pada interface StudentBehavior yaitu:
+
+**PayFee()  
+GoToSchool() bool  
+TalkToFriends(friend_name string) (string, string)**  
+
+Untuk mengimplementasi fungsinya di Student struct dibuat method dengan nama yang sama persis dengan yang ada di interface StudentBehavior.
+
+
+Untuk menggunakan interface, dapat dilihat pada kodingan
+
+![](img/1-39.png)
+
+Dimana polanya adalah :
+
+````GO
+Var var_name Interface_Name = struct_implemented{}
+````
+
+Kita dapat membuat struct dengan menggunakan pointer (&) atau tidak. Jika ada salah satu pointer receiver yang menggunakan struct, maka wajib menggunakan tanda (&) pada saat deklarasi variable. Jika tidak ada pointer receiver, hanya menggunakan receiver biasa, maka dapat memilih untk mendeklarasi dengan menggunakan pointer(&) atau tidak.
+
+### Empty Interface
+Adalah tipe interface yang tidak memiliki method sama sekali. Kita dapat menyimpan nilai apapun dalam empty interface. Dapat dibilang bahwa ini mirip dengan Object yang ada di java atau **dynamic** yang ada di dart.
+
+![](img/1-40.png)
+
+Dapat dilihat bahwa value mempunyai tipe interface{}/empty interface. Sehingga kita bisa mengassign nilai apapun kedalamnya. Kita juga dapat memakai empty interface pada fungsi. Contohnya adalah fmt.Print
+
+![](img/1-41.png)
+
+### Map
+Map adalah suatu struktur data yang memetakan key ke value
+
+![](img/1-42.png)
+
+Dapat dilihat bahwa kita membuat mapStrInt yang mempunyai struktur data map[string]int
+
+Dimana keynya merupakan string dan valuenya merupakan integer.
+
+**Inisialisasi map dengan menggunakan make(map_type)**
+
+Kita bahkan bisa menginisialisasi map dengan value/key sebuah struct
+
+### Errors
+
+Salah satu kelebihan go adalah kita tidak perlu menghafal tipe error seperti yang ada di Java, contohnya adalah IOException, RuntimeException, dll. Sebab setiap fungsi di go dapat mereturn error dimana kita bisa mengecek error tersebut
+
+![](img/1-43.png)
+
+Dapat dilihat diatas bahwa kita ingin mengubah string “42” menjadi integer. Kita bisa melakukannya dengan menggunakan package **strconv** dengan fungsi **Atoi**
+
+![](img/1-44.png)
+
+Fungsi Atoi mengembalikan (int,error) dimana parameter 1 merupakan hasil dari konversi “42”, sedangkan error untuk mengecek apakah ketika melakukan convert terjadi error. Jika fungsi mereturn error, **kita wajib untuk mengecek apakah terdapat error dengan cara**
+````GO
+ If err != nil{
+ ...
+ }
+````
+Yang berarti bahwa jika variable err tidak kosong yang berarti terdapat isinya yang merupakan error, maka terjadi kesalahan pada kode kalian. Contohnya diatas, jika kita menaruh string **“hallo”** pada strconv.Atoi sehingga menjadi strconv.Atoi(“hallo”) tentunya akan menghasilkan error. Sehingga variable err akan diassign suatu error.
+
+Kita bahkan dapat dengan mudah membuat custom error sendiri. Dapat dilihat dari kodingan diatas yaitu:
+````GO
+Err  := errors.New(“Angkanya sedikit”)
+````
+Itu merupakan custom error. Custom error dapat dibuat melalui package **errors**.
