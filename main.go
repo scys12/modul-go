@@ -19,4 +19,7 @@ func main() {
 	fmt.Println(text)
 	pass := usr.GetPassword()
 	fmt.Println(pass)
+
+	InitStudent()
+	InitEmptyInterface()
 }
