@@ -24,16 +24,7 @@ func (pd *ProductDelivery) UpdateProduct(w http.ResponseWriter, r *http.Request)
 		payload.ResponseError(w, http.StatusBadRequest, err)
 		return
 	}
-	updatedProduct, err := pd.productRepo.GetCurrentUserProduct(productID, userID)
-	if err != nil {
-		payload.ResponseError(w, http.StatusNotFound, err)
-		return
-	}
-	updatedProduct.Name = productReq.Name
-	updatedProduct.Description = productReq.Description
-	updatedProduct.Price = productReq.Price
-
-	err = pd.productRepo.UpdateProduct(updatedProduct)
+	err = pd.productService.UpdateProduct(productReq, productID, userID)
 	if err != nil {
 		payload.ResponseError(w, http.StatusInternalServerError, err)
 		return

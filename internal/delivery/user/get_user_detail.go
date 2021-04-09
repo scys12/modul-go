@@ -8,8 +8,12 @@ import (
 )
 
 func (ud *UserDelivery) GetUserDetail(w http.ResponseWriter, r *http.Request) {
-	userID, _ := strconv.Atoi(r.Header.Get("X-Header-UserID"))
-	currentUser, err := ud.userRepo.GetUserByID(userID)
+	userID, err := strconv.Atoi(r.Header.Get("X-Header-UserID"))
+	if err != nil {
+		payload.ResponseError(w, http.StatusBadRequest, err)
+		return
+	}
+	currentUser, err := ud.userService.GetUserByID(userID)
 	if err != nil {
 		payload.ResponseError(w, http.StatusInternalServerError, err)
 		return

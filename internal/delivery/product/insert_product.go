@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/scys12/modul-go/internal/model"
 	"github.com/scys12/modul-go/pkg/payload"
 )
 
@@ -23,13 +22,7 @@ func (pd *ProductDelivery) InsertProduct(w http.ResponseWriter, r *http.Request)
 		payload.ResponseError(w, http.StatusBadRequest, err)
 		return
 	}
-	product := model.Product{
-		Name:        productReq.Name,
-		Description: productReq.Description,
-		Price:       productReq.Price,
-		SellerID:    userID,
-	}
-	err = pd.productRepo.InsertProduct(product)
+	err = pd.productService.InsertProduct(productReq, userID)
 	if err != nil {
 		payload.ResponseError(w, http.StatusInternalServerError, err)
 		return

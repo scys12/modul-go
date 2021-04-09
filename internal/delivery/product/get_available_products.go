@@ -7,7 +7,7 @@ import (
 )
 
 func (pd *ProductDelivery) GetAvailableProducts(w http.ResponseWriter, r *http.Request) {
-	products, err := pd.productRepo.GetAvailableProducts()
+	products, err := pd.productService.GetAvailableProducts()
 	if err != nil {
 		payload.ResponseError(w, http.StatusInternalServerError, err)
 		return

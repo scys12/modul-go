@@ -11,7 +11,7 @@ import (
 func (pd *ProductDelivery) BuyProduct(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	productID, _ := strconv.Atoi(vars["id"])
-	err := pd.productRepo.BuyProduct(productID)
+	err := pd.productService.BuyProduct(productID)
 	if err != nil {
 		payload.ResponseError(w, http.StatusInternalServerError, err)
 		return

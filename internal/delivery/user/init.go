@@ -1,8 +1,10 @@
 package user
 
 import (
+	"net/http"
+
 	"github.com/go-playground/validator/v10"
-	"github.com/scys12/modul-go/internal/persistence/user"
+	"github.com/scys12/modul-go/internal/service/user"
 )
 
 var validate *validator.Validate
@@ -11,13 +13,19 @@ func init() {
 	validate = validator.New()
 }
 
-type UserDelivery struct {
-	userRepo user.UserRepo
+type IUserDelivery interface {
+	CreateNewUser(http.ResponseWriter, *http.Request)
+	GetUserDetail(http.ResponseWriter, *http.Request)
+	LoginUser(http.ResponseWriter, *http.Request)
 }
 
-func NewInstance(user user.UserRepo) UserDelivery {
+type UserDelivery struct {
+	userService user.IUserService
+}
+
+func NewInstance(user user.IUserService) IUserDelivery {
 	delivery := UserDelivery{
-		userRepo: user,
+		userService: user,
 	}
-	return delivery
+	return &delivery
 }
