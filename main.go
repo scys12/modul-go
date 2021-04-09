@@ -22,4 +22,6 @@ func main() {
 
 	InitStudent()
 	InitEmptyInterface()
+	InitMaps()
+	InitErrors()
 }
