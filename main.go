@@ -28,18 +28,16 @@ type PokemonStat struct {
 }
 
 func main() {
-
-	// Inisialisasi reader
-	reader := bufio.NewReader(os.Stdin)
-
 	fmt.Println("Halo Keluarga RPL!")
 	fmt.Println("-------------------")
 	fmt.Println("Pilih pokemon:")
 	fmt.Println("1. Bulbasaur")
 	fmt.Println("2. Pikachu")
 	fmt.Println("3. Ditto")
-	fmt.Printf("\nMasukkan pilihan: ")
+	fmt.Printf("Masukkan pilihan: ")
 
+	// Inisialisasi reader
+	reader := bufio.NewReader(os.Stdin)
 	// Membaca input
 	char, _, err := reader.ReadRune()
 
@@ -50,7 +48,6 @@ func main() {
 
 	// Base URL
 	url := "http://pokeapi.co/api/v2/pokemon/"
-
 	// Ganti URL berdasar input
 	switch char {
 	case '1':
@@ -65,7 +62,6 @@ func main() {
 
 	// Fetch api
 	response, err := http.Get(url)
-
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
@@ -81,12 +77,13 @@ func main() {
 	var responseObject Response
 	json.Unmarshal(responseData, &responseObject)
 
-	fmt.Printf("Name: %v\n", responseObject.Name)
-	fmt.Printf("Base Experience: %v\n", responseObject.BaseExperience)
-	fmt.Printf("Weight: %v\n", responseObject.Weight)
-
+	fmt.Printf("=== Result ===\n")
+	fmt.Printf("Name\t: %v\n", responseObject.Name)
+	fmt.Printf("Base XP\t: %v\n", responseObject.BaseExperience)
+	fmt.Printf("Weight\t: %v\n", responseObject.Weight)
+	fmt.Printf("Statistics:\n")
 	for i := 0; i < len(responseObject.Stats); i++ {
-		fmt.Printf("%v: %v\n", responseObject.Stats[i].Stat.StatName, responseObject.Stats[i].BaseStat)
+		fmt.Printf(" - %v: %v\n", responseObject.Stats[i].Stat.StatName, responseObject.Stats[i].BaseStat)
 	}
 
 }
