@@ -23,7 +23,7 @@ Kebutuhan pembuatan miniproject Pokemon CLI:
 
 Kita perlu membuat isian pertanyaan pada program CLI.
 
-```
+```go
 fmt.Println("Halo Keluarga RPL!")
 fmt.Println("-------------------")
 fmt.Println("Pilih pokemon:")
@@ -35,14 +35,14 @@ fmt.Printf("Masukkan pilihan: ")
 
 Setelahnya, kita dapat langsung memasukkan standar input di dalam Go. Untuk melakukannya, tambahkan package "bufio" serta sama seperti _Scanner class_ pada Java, kita melakukkan passing fungsi _NewReader_ ke variabel reader.
 
-```
+```go
 // Inisialisasi reader
 reader := bufio.NewReader(os.Stdin)
 ```
 
 Berlanjut ke memanggil data input ke method _ReadRune_ di mana memanggil data berupa rune atau char. Keluaran dari method tersebut adalah rune, size, dan error.
 
-```
+```go
 // Membaca input
 char, _, err := reader.ReadRune()
 
@@ -56,7 +56,7 @@ if err != nil {
 
 Kita berlanjut membuat string url dari API yang akan dibuat. Pada contoh kali ini, kita memakai url dari "http://pokeapi.co/api/v2/pokemon/" sebagai API-nya. Switch case juga dipakai sebagai if condition.
 
-```
+```go
 // Base URL
 url := "http://pokeapi.co/api/v2/pokemon/"
 
@@ -75,7 +75,7 @@ default:
 
 Lalu, kita lakukan fetch dengan package "http" dengan fungsi Get() serta tidak lupa untuk cek errornya.
 
-```
+```go
 // Fetch api
 response, err := http.Get(url)
 if err != nil {
@@ -86,7 +86,7 @@ if err != nil {
 
 Berlanjut ke mengambil json dari hasil _response fetching_. Di sini dipakai package "ioutil" dengan method ReadAll.
 
-```
+```go
 // Ambil response
 responseData, err := ioutil.ReadAll(response.Body)
 if err != nil {
@@ -103,7 +103,7 @@ Gambaran JSON adalah berikut.
 
 Sehingga, kita ubah ke struct seperti berikut.
 
-```
+```go
 // Struct untuk membantu parsing
 type Response struct {
 	Name           string  `json:"name"`
@@ -124,7 +124,7 @@ type PokemonStat struct {
 
 Selanjutnya, dilakukan parsing dari json ke struct dengan menggunakan package "json" dan method Unmarshal.
 
-```
+```go
 // Parsing response
 var responseObject Response
 json.Unmarshal(responseData, &responseObject)
@@ -132,7 +132,7 @@ json.Unmarshal(responseData, &responseObject)
 
 Hasilnya lantas kita tampilkan sebagai berikut.
 
-```
+```go
 fmt.Printf("=== Result ===\n")
 fmt.Printf("Name\t: %v\n", responseObject.Name)
 fmt.Printf("Base XP\t: %v\n", responseObject.BaseExperience)
