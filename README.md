@@ -99,7 +99,7 @@ if err != nil {
 Sebelum mengubah data response ke struct, kita perlu untuk membuat struct sesuai dengan bentuk dari JSON API.
 
 Gambaran JSON adalah berikut.
-![JSON Pokemon](img/json_pokemon.png)
+![JSON Pokemon](img/json_pokemon.PNG)
 
 Sehingga, kita ubah ke struct seperti berikut.
 
@@ -144,6 +144,6 @@ for i := 0; i < len(responseObject.Stats); i++ {
 ```
 
 Hasil suksesnya akan menjadi seperti berikut.
-![](img/result_pokemon.png)
+![](img/result_pokemon.PNG)
 
 Mudah, kan? Selamat mencoba.
